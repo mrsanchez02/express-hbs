@@ -10,6 +10,10 @@ app.use(morgan('dev'));
 
 // Path
 const viewsPath = path.join(__dirname,'../views/');
+const publicPath = path.join(__dirname, '../public/');
+
+// static path.
+app.use(express.static(publicPath));
 
 // HBS
 app.set('view enginge','hbs');
@@ -18,7 +22,17 @@ app.set('views', viewsPath);
 // Routes
 app.get("/", (req, res) => {
   res.render('index.hbs',{
-    header:"Home page"
+    title:"Home",
+    header:"Home page",
+    image: true
+  });
+})
+
+app.get("/contact", (req, res) => {
+  res.render('index.hbs',{
+    title:"Contact",
+    header:"Contact page",
+    image: false
   });
 })
 
